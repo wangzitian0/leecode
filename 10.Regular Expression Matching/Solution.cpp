@@ -18,11 +18,19 @@ public:
             {
                 if(s[i]==p[j]||s[i]=='.'||p[j]=='.')g[i+1][j+1]|=g[i][j];
 
-                if(s[i+1]=='*')g[i+2][j]|=g[i][j];
-                if(s[i+1]=='*'&&(s[i]==p[j]||s[i]=='.'))g[i][j+1]|=g[i][j];
+                if(s[i+1]=='*'&&i+1<lens)
+                {
+                    g[i+2][j]|=g[i][j];
+                    if(s[i]==p[j]||s[i]=='.')
+                        g[i][j+1]|=g[i][j];
+                }
 
-                if(p[j+1]=='*')g[i][j+2]|=g[i][j];
-                if(p[j+1]=='*'&&(s[i]==p[j]||p[j]=='.'))g[i+1][j]|=g[i][j];
+                if(p[j+1]=='*'&&j+1<lenp)
+                {
+                    g[i][j+2]|=g[i][j];
+                    if(s[i]==p[j]||p[j]=='.')
+                        g[i+1][j]|=g[i][j];
+                }
             }
         /*for(int i=0;i<=lens;i++,printf("\n"))
             for(int j=0;j<=lenp;j++)
@@ -33,5 +41,5 @@ public:
 int main()
 {
     Solution x= Solution();
-    cout<<x.isMatch("aaab",".*")<<endl;
+    cout<<x.isMatch("aa","")<<endl;
 }
